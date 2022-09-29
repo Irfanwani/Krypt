@@ -5,6 +5,8 @@ import { BsInfoCircle } from "react-icons/bs";
 
 import { TransactionContext } from "../context/TransactionContext";
 
+import { shortenAddress } from "../utils/shortenAddress";
+
 import Loader from "./Loader";
 const commonStyles =
   "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
@@ -14,21 +16,13 @@ interface InputProps {
   name: string;
   type: string;
   handleChange: Function;
-  value: string;
 }
 
-const Input: FC<InputProps> = ({
-  placeholder,
-  name,
-  type,
-  handleChange,
-  value,
-}) => (
+const Input: FC<InputProps> = ({ placeholder, name, type, handleChange }) => (
   <input
     type={type}
     placeholder={placeholder}
     step="0.0001"
-    value={value}
     onChange={(e) => handleChange(e, name)}
     className="my-2 w-full rounded-sm p-2 outline-none bg-tranparent text-white border-none text-sm white-glassmorphism"
   />
@@ -41,13 +35,15 @@ const Welcome: FC = () => {
     formdata,
     handleChange,
     sendTransaction,
+    isLoading
   } = useContext(TransactionContext);
 
   const handleSubmit = (e) => {
-    const {addressTo, amount, keyword, message} = formdata;
+    const { addressTo, amount, keyword, message } = formdata;
     e.preventDefault();
 
-    if (!addressTo || !amount || !keyword || !message) return alert('details missing');
+    if (!addressTo || !amount || !keyword || !message)
+      return alert("details missing");
 
     sendTransaction();
   };
@@ -98,7 +94,9 @@ const Welcome: FC = () => {
                 <BsInfoCircle fontSize={17} color="fff" />
               </div>
               <div>
-                <p className="text-white font-light text-sm">Address</p>
+                <p className="text-white font-light text-sm ">
+                  {shortenAddress(connectedAccount)}
+                </p>
                 <p className="text-white font-semibold text-lg mt-1">
                   Ethereum
                 </p>
@@ -134,7 +132,7 @@ const Welcome: FC = () => {
             />
 
             <div className="h-[1px] w-full bg-gray-400 my-2" />
-            {false ? (
+            {isLoading ? (
               <Loader />
             ) : (
               <button
