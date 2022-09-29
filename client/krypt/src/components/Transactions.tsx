@@ -1,11 +1,20 @@
 import { FC, useContext } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 
-import dummyData from "../utils/dummyData";
 import { shortenAddress } from "../utils/shortenAddress";
 import useFetch from "../hooks/useFetch";
 
-const TransactionCard: FC = ({
+interface TCProps {
+  addressTo: string,
+  addressFrom: string,
+  timestamp: string,
+  keyword: string,
+  message: string,
+  amount: number,
+  url: string,
+}
+
+const TransactionCard: FC<TCProps> = ({
   addressTo,
   addressFrom,
   timestamp,
@@ -14,7 +23,7 @@ const TransactionCard: FC = ({
   amount,
   url,
 }) => {
-  const gifUrl = useFetch<string>(keyword, "");
+  const gifUrl = useFetch(keyword);
   return (
     <div
       className="bg-[#181918] m-4 flex flex-1 2xl:min-w-[450px]
@@ -71,7 +80,7 @@ const TransactionCard: FC = ({
 };
 
 const Transactions: FC = () => {
-  const { connectedAccount, tx } = useContext(TransactionContext);
+  const { connectedAccount, tx }: any = useContext(TransactionContext);
 
   return (
     <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions">
@@ -87,7 +96,7 @@ const Transactions: FC = () => {
         )}
 
         <div className="flex flex-wrap justify-center items-center mt-10">
-          {tx.reverse().map((tx: Object, index: number) => (
+          {tx.reverse().map((tx: any, index: number) => (
             <TransactionCard key={index} {...tx} />
           ))}
         </div>

@@ -6,8 +6,8 @@ interface ufProps {
   keyword: string;
 }
 
-const useFetch = <T,>(keyword: string, initialState: T) => {
-  const [gifUrl, setGifUrl] = useState<T>(initialState);
+const useFetch = (keyword: string) => {
+  const [gifUrl, setGifUrl] = useState('');
 
   const fetchGifs = async () => {
     try {

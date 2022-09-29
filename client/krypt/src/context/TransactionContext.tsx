@@ -1,4 +1,4 @@
-import React, {
+import {
   ReactNode,
   FC,
   useState,
@@ -11,7 +11,7 @@ import { contractABI, contractAddress } from "../utils/constants";
 
 export const TransactionContext = createContext({});
 
-const { ethereum } = window;
+const { ethereum } = window as any;
 
 const getEthereumContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -43,7 +43,7 @@ export const TransactionProvider: FC<TProps> = ({ children }) => {
   const [tc, setTC] = useState(localStorage.getItem("transactionCount"));
   const [tx, setTx] = useState([]);
 
-  const handleChange = (e, name: string) => {
+  const handleChange = (e: any, name: string) => {
     setFormdata((prev) => ({ ...prev, [name]: e.target.value }));
   };
 
@@ -54,7 +54,7 @@ export const TransactionProvider: FC<TProps> = ({ children }) => {
       const availableTransactions =
         await TransactionContract.getAllTransactions();
 
-        const structuredTxns = availableTransactions.map((tx: Object) => ({
+        const structuredTxns = availableTransactions.map((tx: any) => ({
           addressTo: tx.receiver,
           addressFrom: tx.sender,
           timestamp: new Date(tx.timestamp.toNumber()*1000).toLocaleString(),

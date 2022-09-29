@@ -1,5 +1,4 @@
 import { FC, useContext } from "react";
-import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 
@@ -35,10 +34,10 @@ const Welcome: FC = () => {
     formdata,
     handleChange,
     sendTransaction,
-    isLoading
-  } = useContext(TransactionContext);
+    isLoading,
+  }: any = useContext(TransactionContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     const { addressTo, amount, keyword, message } = formdata;
     e.preventDefault();
 
