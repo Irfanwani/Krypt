@@ -1,5 +1,5 @@
 import { FC } from "react";
-import logo from "../../images/logo.png";
+import logo from "/logo.png";
 const Footer: FC = () => {
   return (
     <div className="w-full flex md:justify-center justify-between items-center flex-col p-4 gradient-bg-footer">
