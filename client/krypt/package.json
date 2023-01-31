@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://irfanwani.github.io/portfolio",
+  "homepage": "https://irfanwani.github.io/krypt",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -13,7 +13,6 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "ethers": "^5.7.1",
-    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0"
@@ -23,6 +22,7 @@
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
     "autoprefixer": "^10.4.12",
+    "gh-pages": "^5.0.0",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.6.4",
